@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/MiniDictionary/static/css/main.43426086.chunk.css",
-    "main.js": "/MiniDictionary/static/js/main.18863d80.chunk.js",
-    "main.js.map": "/MiniDictionary/static/js/main.18863d80.chunk.js.map",
+    "main.css": "/MiniDictionary/static/css/main.f0bb07b5.chunk.css",
+    "main.js": "/MiniDictionary/static/js/main.2a4c7878.chunk.js",
+    "main.js.map": "/MiniDictionary/static/js/main.2a4c7878.chunk.js.map",
     "runtime-main.js": "/MiniDictionary/static/js/runtime-main.a407bfbc.js",
     "runtime-main.js.map": "/MiniDictionary/static/js/runtime-main.a407bfbc.js.map",
-    "static/js/2.b2731df4.chunk.js": "/MiniDictionary/static/js/2.b2731df4.chunk.js",
-    "static/js/2.b2731df4.chunk.js.map": "/MiniDictionary/static/js/2.b2731df4.chunk.js.map",
+    "static/js/2.7ce2f64e.chunk.js": "/MiniDictionary/static/js/2.7ce2f64e.chunk.js",
+    "static/js/2.7ce2f64e.chunk.js.map": "/MiniDictionary/static/js/2.7ce2f64e.chunk.js.map",
     "index.html": "/MiniDictionary/index.html",
-    "static/css/main.43426086.chunk.css.map": "/MiniDictionary/static/css/main.43426086.chunk.css.map",
-    "static/js/2.b2731df4.chunk.js.LICENSE.txt": "/MiniDictionary/static/js/2.b2731df4.chunk.js.LICENSE.txt"
+    "static/css/main.f0bb07b5.chunk.css.map": "/MiniDictionary/static/css/main.f0bb07b5.chunk.css.map",
+    "static/js/2.7ce2f64e.chunk.js.LICENSE.txt": "/MiniDictionary/static/js/2.7ce2f64e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a407bfbc.js",
-    "static/js/2.b2731df4.chunk.js",
-    "static/css/main.43426086.chunk.css",
-    "static/js/main.18863d80.chunk.js"
+    "static/js/2.7ce2f64e.chunk.js",
+    "static/css/main.f0bb07b5.chunk.css",
+    "static/js/main.2a4c7878.chunk.js"
   ]
 }
