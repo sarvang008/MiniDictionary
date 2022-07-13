@@ -1,13 +1,9 @@
-const DictionaryItem=({item})=>{
-
-
-return (
+const DictionaryItem = ({ item }) => {
+  return (
     <div className='definition'>
-   
-    <span>{item}</span>
-   
-  </div>
-)
+      <li>{item}</li>
+    </div>
+  )
 }
 
 export default DictionaryItem

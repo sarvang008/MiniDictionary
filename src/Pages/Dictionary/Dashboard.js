@@ -1,59 +1,55 @@
-import  { useState,useEffect } from 'react'
+import { useState } from 'react'
 import DictionaryForm from '../../Components/DictionaryForm'
 import DictionaryItem from '../../Components/DictionaryItem'
 import getDefinitions from '../../Service/DictionaryService'
 
-
 const Dashboard = () => {
-
   const [text, setText] = useState('')
 
-  const [dictionaryList,setDictionaryList ] = useState(null)
-  const [errorMessage,setErrorMessage ] = useState('')
-  const [loading,setLoading ] = useState(false)
+  const [dictionaryList, setDictionaryList] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
 
-
-
-    const onSubmit = async(e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-  
+
     try {
       setLoading(true)
-      const result= await getDefinitions(text.trim())
-     
-      console.log(result.data[0].meanings[0].definitions[0].definition)
-     const definitions=result.data.map(item=>item.meanings.map(meaning=>meaning.definitions))
-     console.log(definitions[0][0])
-      setDictionaryList(definitions[0][0])
-     
+      const result = await getDefinitions(text.trim())
+
+      const definitions = result.data.map((item) =>
+        item.meanings.map((meaning) => meaning.definitions)
+      )
+
+      setDictionaryList(definitions.flat(Infinity))
+
       setErrorMessage('')
       setLoading(false)
-
-  
     } catch (error) {
-     console.log(error)
-      setDictionaryList([])
-      setLoading(false)
-      setErrorMessage('No Definitions found')
+      if (error.response.status >= 400 && error.response.status < 500) {
+        setDictionaryList([])
+        setLoading(false)
+        setErrorMessage('No Definitions found')
+      } else if (error.response.status >= 500) {
+        setDictionaryList([])
+        setLoading(false)
+        setErrorMessage('Server Error')
+      }
     }
-   
   }
-
-
 
   return (
     <>
-      <DictionaryForm text={text} setText={setText} onSubmit={onSubmit}/>
+      <DictionaryForm text={text} setText={setText} onSubmit={onSubmit} />
 
       <section className='content'>
-
-        {loading && <div >Loading...</div>}
+        {loading && <div>Loading...</div>}
         {!loading && dictionaryList?.length > 0 ? (
-          <div className='lists'>
-            {dictionaryList.map((item,index) => (
+          <ul className='lists' data-testid='list'>
+            {dictionaryList.map((item, index) => (
               <DictionaryItem key={index} item={item.definition} />
             ))}
-          </div>
+          </ul>
         ) : (
           <h3>{!loading && errorMessage}</h3>
         )}
