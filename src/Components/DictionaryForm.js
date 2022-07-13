@@ -1,10 +1,9 @@
-import { useState } from 'react'
 
 function DictionaryForm({text,onSubmit,setText}) {
  
   return (
     <section className='form'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} aria-label="form"  data-testid="form" >
         <div className='form-group'>
           <input
             type='text'

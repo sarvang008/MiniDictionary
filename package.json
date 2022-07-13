@@ -1,8 +1,10 @@
 {
-  "name": "Dictionary",
+  "name": "dictionary",
   "version": "0.1.0",
   "homepage": "https://sarvang008.github.io/MiniDictionary/",
   "private": true,
+
+  
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -41,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "core-js": "^3.23.4",
     "gh-pages": "^4.0.0"
   }
 }

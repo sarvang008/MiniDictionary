@@ -1,9 +1,13 @@
 import axios from 'axios'
 
-const getDefinitions = async(text) => {
-  const result=  await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
+export const api='https://api.dictionaryapi.dev/api/v2/entries/en'
 
-  return result.data
+const getDefinitions = async (text) => {
+  const result = await axios.get(
+    `${api}/${text}`
+  )
+
+ return result
 }
 
 export default getDefinitions

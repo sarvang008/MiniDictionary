@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import  { useState,useEffect } from 'react'
 import DictionaryForm from '../../Components/DictionaryForm'
 import DictionaryItem from '../../Components/DictionaryItem'
 import getDefinitions from '../../Service/DictionaryService'
@@ -10,28 +10,35 @@ const Dashboard = () => {
 
   const [dictionaryList,setDictionaryList ] = useState(null)
   const [errorMessage,setErrorMessage ] = useState('')
+  const [loading,setLoading ] = useState(false)
 
 
-  
 
-  const onSubmit = async(e) => {
+    const onSubmit = async(e) => {
     e.preventDefault()
   
     try {
+      setLoading(true)
       const result= await getDefinitions(text.trim())
      
-     const definitions=result.map(item=>item.meanings.map(meaning=>meaning.definitions))
-    
-     setDictionaryList(definitions.flat(Infinity))
+      console.log(result.data[0].meanings[0].definitions[0].definition)
+     const definitions=result.data.map(item=>item.meanings.map(meaning=>meaning.definitions))
+     console.log(definitions[0][0])
+      setDictionaryList(definitions[0][0])
+     
       setErrorMessage('')
+      setLoading(false)
+
   
     } catch (error) {
-     
+     console.log(error)
       setDictionaryList([])
+      setLoading(false)
       setErrorMessage('No Definitions found')
     }
-    setText('')
+   
   }
+
 
 
   return (
@@ -39,14 +46,16 @@ const Dashboard = () => {
       <DictionaryForm text={text} setText={setText} onSubmit={onSubmit}/>
 
       <section className='content'>
-        {dictionaryList?.length > 0 ? (
+
+        {loading && <div >Loading...</div>}
+        {!loading && dictionaryList?.length > 0 ? (
           <div className='lists'>
             {dictionaryList.map((item,index) => (
               <DictionaryItem key={index} item={item.definition} />
             ))}
           </div>
         ) : (
-          <h3>{errorMessage}</h3>
+          <h3>{!loading && errorMessage}</h3>
         )}
       </section>
     </>
