@@ -1,5 +1,4 @@
-name: Mini Dictionary Test
-
+name: ComponentTest
 on:
   push:
     branches: [$default-branch]
