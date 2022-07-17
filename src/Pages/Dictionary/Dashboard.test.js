@@ -96,7 +96,7 @@ describe('Check form validation', () => {
 })
 
 describe('Check Component after API call', () => {
-  test('Get successful result of the API call', async () => {
+  test('Render List after successful result of the API call', async () => {
     axios.get.mockResolvedValue({ data: definitions })
 
     render(<Dashboard />)
@@ -122,7 +122,7 @@ describe('Check Component after API call', () => {
     })
   })
 
-  test('Get No value from API call', async () => {
+  test('Render no definition found from API call after 404 error', async () => {
     const err = new Error('No Definitions found')
     err.response = {
       status: 404,
@@ -151,7 +151,7 @@ describe('Check Component after API call', () => {
     })
   })
 
-  test('Get Server Error from API call', async () => {
+  test('Redner Server Error after Server Error from API call', async () => {
     const err = new Error('Server Error')
     err.response = {
       status: 500,

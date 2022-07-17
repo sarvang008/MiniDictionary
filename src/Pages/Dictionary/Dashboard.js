@@ -3,6 +3,15 @@ import DictionaryForm from '../../Components/DictionaryForm'
 import DictionaryItem from '../../Components/DictionaryItem'
 import getDefinitions from '../../Service/DictionaryService'
 
+function flatten(array)
+{
+    if(array.length === 0)
+        return array;
+    else if(Array.isArray(array[0]))
+        return flatten(array[0]).concat(flatten(array.slice(1)));
+    else
+        return [array[0]].concat(flatten(array.slice(1)));
+}
 const Dashboard = () => {
   const [text, setText] = useState('')
 
@@ -20,8 +29,8 @@ const Dashboard = () => {
       const definitions = result.data.map((item) =>
         item.meanings.map((meaning) => meaning.definitions)
       )
-
-      setDictionaryList(definitions.flat(Infinity))
+     
+      setDictionaryList(flatten(definitions))
 
       setErrorMessage('')
       setLoading(false)
