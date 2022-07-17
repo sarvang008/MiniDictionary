@@ -45,7 +45,8 @@
   },
   "devDependencies": {
     "core-js": "^3.23.4",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "istanbul-badges-readme": "^1.8.2"
   },
   "jest": {
     "coverageReporters": [
