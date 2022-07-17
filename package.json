@@ -23,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:coverage": "npm test -- --coverage",
-    "test:badges": "npm run test:coverage  && jest-coverage-badges"
+    "test:badges": "npm run test:coverage  && jest-coverage-badges",
+    "make-badges": "istanbul-badges-readme"
   },
   "eslintConfig": {
     "extends": [
