@@ -151,7 +151,7 @@ describe('Check Component after API call', () => {
     })
   })
 
-  test('Redner Server Error after Server Error from API call', async () => {
+  test('Render Server Error after Server Error from API call', async () => {
     const err = new Error('Server Error')
     err.response = {
       status: 500,
@@ -175,6 +175,30 @@ describe('Check Component after API call', () => {
 
     await waitFor(() => {
       expect(screen.queryByText(/Loading/i)).not.toBeInTheDocument()
+      const list = screen.queryByTestId('list')
+      expect(list).not.toBeInTheDocument()
+    })
+  })
+
+  test('Render component with no content from API call', async () => {
+    const err = new Error('No Content')
+    err.response = {
+      status: 204,
+      message: 'No Content',
+    }
+    axios.get.mockRejectedValueOnce(err)
+
+    render(<Dashboard />)
+
+    userEvent.type(screen.getByTestId('search'), '')
+    const form = screen.getByTestId('form')
+    expect(form).toBeInTheDocument()
+    fireEvent.submit(form)
+    await waitFor(() =>
+      expect(screen.getByText(/Loading/i)).toBeInTheDocument()
+    )
+
+    await waitFor(() => {
       const list = screen.queryByTestId('list')
       expect(list).not.toBeInTheDocument()
     })
